@@ -1,0 +1,28 @@
+{
+  "name": "urlShortener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node models/seeds/seeder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tommy0311/urlShortener.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tommy0311/urlShortener/issues"
+  },
+  "homepage": "https://github.com/tommy0311/urlShortener#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "express-handlebars": "^3.0.0"
+  }
+}
