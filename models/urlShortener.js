@@ -3,15 +3,11 @@ const Schema = mongoose.Schema
 require('mongoose-type-url');
 
 const urlShortenerSchema = new Schema({
-  url_id: {
-    type: Number,
-    required: true
-  },
   short_url: {
     type: String,
     required: true
   },
-  url: {
+  input_url: {
     type: mongoose.SchemaTypes.Url,
     required: true
   }
