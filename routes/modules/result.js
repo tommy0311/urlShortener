@@ -12,7 +12,7 @@ function generateShortUrl(length) {
   // Map to store 62 possible characters
   let map = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
   let shorturl = [];
-  let randomID = generateRandomInteger(0, 62*62*62*62*62-1)
+  let randomID = generateRandomInteger(0, (Math.pow(62,length)-1))
 
   // Convert given integer id to a base 62 number
   while (shorturl.length != length)
@@ -48,12 +48,12 @@ router.post('/', async (req, res) => {
       return
     }
 
-    //Is randomUrl used or not
     do{
       randomUrl = generateShortUrl(5)
+      //Is randomUrl used or not
       result = await UrlShortener.findOne({ short_url: randomUrl }).lean()
     } while( result )
-    //console.log(randomUrl)
+    console.log(randomUrl)
 
     const newShortURL = {
       "short_url": randomUrl,
