@@ -6,7 +6,7 @@ const routes = require('./routes') // It is equal to require('./routes/index')
 require('./config/mongoose')
 
 const app = express();
-const port = 3000;
+const port = process.env.EXPRESS_PORT || 3000;
 
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: '.hbs'}));
 app.set("view engine", "hbs");

@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
+
 const UrlShortener = require('../../models/urlShortener')
 
 const expressHost = process.env.EXPRESS_HOST || 'localhost'
+const expressPort = process.env.EXPRESS_PORT || 3000;
+const expressURL = "http://" + expressHost + ":" + expressPort + "/"
 
 //Generate a random number between min and max, including both min and max
 function generateRandomInteger(min, max) {
@@ -30,7 +33,7 @@ function generateShortUrl(length) {
 }
 
 router.get("/:shortURL", (req, res) => {
-  const shortURL = "http://" + expressHost + "/" + req.params.shortURL
+  const shortURL = expressURL + req.params.shortURL
 
   res.render("result", { shortURL })
 });
@@ -72,4 +75,5 @@ router.post('/', async (req, res) => {
   }
   
 })
+
 module.exports = router
