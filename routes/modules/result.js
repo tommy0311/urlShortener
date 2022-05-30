@@ -27,22 +27,14 @@ function generateShortUrl(length) {
   return shorturl.join("");
 }
 
-router.get("/", (req, res) => {
- res.render("index")
-});
-
-router.get("/", (req, res) => {
-  res.render("index")
-});
-
-//Shorten URL
+//create shorten URL
 router.post('/', async (req, res) => {
   //console.log(req.body)
   
   let randomUrl = ''
   let result = {}
   try {
-    //Is inputURL used or not
+    //Is inputURL existed or not
     result = await UrlShortener.findOne({ input_url: req.body.inputURL }).lean()
     if( result ){
       return
@@ -50,7 +42,7 @@ router.post('/', async (req, res) => {
 
     do{
       randomUrl = generateShortUrl(5)
-      //Is randomUrl used or not
+      //Is randomUrl existed or not
       result = await UrlShortener.findOne({ short_url: randomUrl }).lean()
     } while( result )
     console.log(randomUrl)
