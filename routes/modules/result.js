@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const UrlShortener = require('../../models/urlShortener')
 
+const expressHost = process.env.EXPRESS_HOST || 'localhost'
+
 //Generate a random number between min and max, including both min and max
 function generateRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -27,25 +29,33 @@ function generateShortUrl(length) {
   return shorturl.join("");
 }
 
+router.get("/:shortURL", (req, res) => {
+  const shortURL = "http://" + expressHost + "/" + req.params.shortURL
+
+  res.render("result", { shortURL })
+});
+
 //create shorten URL
 router.post('/', async (req, res) => {
   //console.log(req.body)
   
   let randomUrl = ''
-  let result = {}
+  let sqlResult = {}
   try {
     //Is inputURL existed or not
-    result = await UrlShortener.findOne({ input_url: req.body.inputURL }).lean()
-    if( result ){
+    sqlResult = await UrlShortener.findOne({ input_url: req.body.inputURL }).lean()
+
+    if( sqlResult ){
+      //res.render("result", { shortURL: sqlResult.short_url })
+      res.redirect(`/result/${sqlResult.short_url}`)
       return
     }
 
     do{
       randomUrl = generateShortUrl(5)
       //Is randomUrl existed or not
-      result = await UrlShortener.findOne({ short_url: randomUrl }).lean()
-    } while( result )
-    console.log(randomUrl)
+      sqlResult = await UrlShortener.findOne({ short_url: randomUrl }).lean()
+    } while( sqlResult )
 
     const newShortURL = {
       "short_url": randomUrl,
@@ -54,7 +64,7 @@ router.post('/', async (req, res) => {
 
     await UrlShortener.create(newShortURL)
 
-    res.redirect('/')
+    res.redirect(`/result/${newShortURL.short_url}`)
   }
   catch( error ) {
     console.log(error)
