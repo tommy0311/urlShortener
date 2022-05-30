@@ -33,9 +33,9 @@ function generateShortUrl(length) {
 }
 
 router.get("/:shortURL", (req, res) => {
-  const shortURL = expressURL + req.params.shortURL
+  const shortLink = expressURL + req.params.shortURL
 
-  res.render("result", { shortURL })
+  res.render("result", { shortLink })
 });
 
 //create shorten URL
