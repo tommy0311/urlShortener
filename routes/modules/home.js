@@ -28,8 +28,6 @@ router.get("/:shortURL", async (req, res) => {
     console.log(error)
     res.redirect('/')
   }
-
-
 });
 
 module.exports = router
