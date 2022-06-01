@@ -1,10 +1,19 @@
 <div class="container">
-  <a href="/">
-    <h1 class="h1 title">URL Shortener</h1>
-  </a>
-  <img class="image" src="images/logo.png" alt="image">
-  <form action="/result" method="POST">
-    <input type="url" id="inputURL" name="inputURL" class="form-control" placeholder="Input URL here" required>
-    <button type="submit" class="btn btn-outline-primary" style="display:block">shorten</button>
-  </form>
+  <div class="d-flex flex-column " style="width:50%;margin:auto">
+    <a href="/">
+      <h1><strong class="row justify-content-center my-3">URL Shortener</strong></h1>
+      </a>
+      <div class="row justify-content-center">
+        <img id="index-logo" src="images/logo.png" alt="image">
+      </div>
+      <form class="my-3" action="/result" method="POST">
+        <input id="index-input" type="url" id="inputURL" name="inputURL" class="form-control" placeholder="Input URL here"
+          required>
+        <div class="row justify-content-center my-3">
+          <button id="index-btn" type="submit" class="btn btn-outline-primary" style="display:block;width:auto">
+            shorten
+          </button>
+        </div>
+      </form>
+  </div>
 </div>

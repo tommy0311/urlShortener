@@ -1,9 +1,22 @@
 <div class="container">
-  <a href="/">
-    <h1 class="h1 title">URL Shortener</h1>
-  </a>
-  <img class="image" src="/images/logo.png" alt="image">
-  <h1 class="h1 title">Success! please use this link:</h1>
-  <a id="shortLink" href={{shortLink}} class="h1">{{shortLink}}</a>
-  <button id="copyBtn" onclick="copyURL()" class="btn btn-outline-primary" style="display:block">Copy</button>
+  <div class="d-flex flex-column " style="width:50%;margin:auto">
+    <a href="/">
+      <h1><strong class="row justify-content-center my-3">URL Shortener</strong></h1>
+      </a>
+    <div class="row justify-content-center">
+      <img id="result-logo" class="image" src="/images/logo.png" alt="image">
+    </div>
+    
+    <div class="row justify-content-start">
+      <h4 class="my-3" class="h1 title">Success! please use this link:</h1>
+        <a id="shortLink" href={{shortLink}} class="h4">
+          {{shortLink}}
+        </a>
+    </div>
+    <div class="row justify-content-center my-3">
+      <button id="copyBtn" onclick="copyURL()" class="btn btn-outline-primary" style="display:block;width:auto">
+        Copy
+      </button>
+    </div>
+    </div>
 </div>
